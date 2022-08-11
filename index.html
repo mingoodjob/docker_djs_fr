@@ -36,12 +36,15 @@
                 <li>Upload</li>
             </a>
         </ul>
-        <div class="login">
+        <div id="login" class="login">
             <form id="login_form">
                 <input type="text" name="username" placeholder="아이디">
                 <input type="password" name="password" placeholder="비밀번호">
                 <button type="submit" value="로그인">로그인</button>
             </form>
+        </div>
+        <div id="logout" class="logout">
+            <a onclick="logout()">&nbsp;Logout</a>
         </div>
     </nav>
     <div id="articles" class="articles">

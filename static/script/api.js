@@ -33,7 +33,19 @@ login_form.onsubmit = (e) => {
   });
 };
 
+// 로그인이 필요합니다 스타일 함수
+function style(doc) {
+  doc.innerHTML = "로그인이 필요합니다.";
+  doc.style.display = "flex";
+  doc.style.flexDirection = "column";
+  doc.style.justifyContent = "center";
+  doc.style.alignItems = "center";
+  doc.style.height = "100vh";
+  doc.style.fontSize = "2rem";
+}
+
 async function Article_Data() {
+  const article_doc = document.getElementById("articles");
   const url = `${BackEndUrl}/post/`;
   const res = await fetch(url, {
     method: "GET",
@@ -43,7 +55,11 @@ async function Article_Data() {
     },
   });
   if (res.status == 401) {
-    alert("로그인이 필요합니다.");
+    style(article_doc);
+    return;
+  } else {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("logout").style.display = "block";
   }
   const response = await res.json();
   Articles(response);
@@ -51,7 +67,6 @@ async function Article_Data() {
 
 async function Article_Upload() {
   const formData = new FormData();
-  const data = {};
   const url = `${BackEndUrl}/post/`;
 
   formData.append("image", document.getElementById("upload_file").files[0]);

@@ -40,3 +40,10 @@ function up_modal_open(e) {
   const modal = document.getElementById("upload_modal");
   modal.style.display = "block";
 }
+
+function logout() {
+  localStorage.removeItem("token_access");
+  localStorage.removeItem("token_refresh");
+  localStorage.removeItem("user_payload");
+  window.location.reload();
+}

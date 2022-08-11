@@ -41,6 +41,20 @@ body {
 .login {
     float: right;
 }
+.logout{
+    cursor: pointer;
+    float: right;
+    display: none;
+}
+.logout a{
+    color: #333333;
+    display: block;
+    float: left;
+    font-size: 14px;
+    line-height: 40px;
+    padding: 0 20px;
+    text-decoration: none;
+}
 
 .articles {
     display: grid;
