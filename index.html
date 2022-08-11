@@ -6,20 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style/style.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>메인페이지</title>
 
 </head>
 
 <body>
+    <div id="upload_modal" class="upload_modal">
+        <div class="upload_modal_content">
+            <div class="upload_modal_header">
+                <span onclick="up_modal_close(this)" class="close">&times;</span>
+                <h2>업로드</h2>
+            </div>
+            <div class="upload_modal_body">
+                <input type="text" id="upload_title" placeholder="제목">
+                <input type="text" id="upload_content" placeholder="내용">
+                <input type="file" name="file" id="upload_file" accept="image/*">
+                <button onclick="Article_Upload()">업로드</button>
+            </div>
+        </div>
+    </div>
+
     <nav class="nav">
         <ul>
             <a href="/index.html">
                 <li>Home</li>
             </a>
-            <a href="/page/about.html">
+            <a onclick="up_modal_open()">
                 <li>Upload</li>
             </a>
-            <!-- login div -->
         </ul>
         <div class="login">
             <form id="login_form">

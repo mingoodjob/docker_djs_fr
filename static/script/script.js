@@ -30,3 +30,13 @@ const Token = (data) => {
   localStorage.setItem("user_payload", jsonPayload);
   window.location.reload();
 };
+
+function up_modal_close(e) {
+  const modal = document.getElementById("upload_modal");
+  modal.style.display = "none";
+}
+
+function up_modal_open(e) {
+  const modal = document.getElementById("upload_modal");
+  modal.style.display = "block";
+}

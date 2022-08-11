@@ -12,6 +12,10 @@ login_form.onsubmit = (e) => {
   formData.forEach((value, key) => {
     data[key] = value;
   });
+  if (data.username == "" || data.password == "") {
+    swal("로그인 오류", "모든 항목을 입력해주세요.", "error");
+    return;
+  }
   fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
@@ -24,28 +28,56 @@ login_form.onsubmit = (e) => {
         Token(data);
       });
     } else if (response.status === 401) {
-      alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+      swal("로그인 오류", "아이디 비밀번호를 확인해 주세요.", "error");
     }
   });
 };
 
-// Article 데이터 조회
-const ArticlesGet = () => {
-  fetch(BackEndUrl + "/post/", {
+async function Article_Data() {
+  const url = `${BackEndUrl}/post/`;
+  const res = await fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: TOKEN,
     },
-  }).then((res) => {
-    if (res.status == 401) {
-      console.log("Not Authorized");
-    } else {
-      res.json().then((data) => {
-        Articles(data);
-      });
-    }
   });
-};
+  if (res.status == 401) {
+    alert("로그인이 필요합니다.");
+  }
+  const response = await res.json();
+  Articles(response);
+}
 
-ArticlesGet();
+async function Article_Upload() {
+  const formData = new FormData();
+  const data = {};
+  const url = `${BackEndUrl}/post/`;
+
+  formData.append("image", document.getElementById("upload_file").files[0]);
+  formData.append("title", document.getElementById("upload_title").value);
+  formData.append("content", document.getElementById("upload_content").value);
+
+  if (formData.get("title") == "" || formData.get("content") == "") {
+    alert("모든 항목을 입력해주세요.");
+    return;
+  } else if (formData.get("image") == "undefined") {
+    alert("이미지를 선택해주세요.");
+    return;
+  }
+
+  const res = await fetch(url, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Authorization: TOKEN,
+    },
+  });
+  if (res.status == 401) {
+    alert("로그인이 필요합니다.");
+  } else {
+    window.location.reload();
+  }
+}
+
+Article_Data();
