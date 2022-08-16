@@ -38,7 +38,7 @@ function up_modal_close(e) {
 
 function up_modal_open(e) {
   const modal = document.getElementById("upload_modal");
-  modal.style.display = "block";
+  modal.style.display = "flex";
 }
 
 function logout() {
@@ -46,4 +46,17 @@ function logout() {
   localStorage.removeItem("token_refresh");
   localStorage.removeItem("user_payload");
   window.location.reload();
+}
+
+function photo_upload() {
+  const photo_upload = document.getElementById("upload_file");
+  const photo_upload_btn = document.getElementById("photo_upload");
+  photo_upload.click();
+
+  photo_upload.addEventListener("change", (e) => {
+    const photo_upload_doc = document.getElementById("photo_preview");
+    photo_upload_doc.src = URL.createObjectURL(e.target.files[0]);
+    photo_upload_btn.style.display = "none";
+    photo_upload_doc.style.display = "block";
+  });
 }

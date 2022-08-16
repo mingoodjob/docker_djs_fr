@@ -12,21 +12,6 @@
 </head>
 
 <body>
-    <div id="upload_modal" class="upload_modal">
-        <div class="upload_modal_content">
-            <div class="upload_modal_header">
-                <span onclick="up_modal_close(this)" class="close">&times;</span>
-                <h2>업로드</h2>
-            </div>
-            <div class="upload_modal_body">
-                <input type="text" id="upload_title" placeholder="제목">
-                <input type="text" id="upload_content" placeholder="내용">
-                <input type="file" name="file" id="upload_file" accept="image/*">
-                <button onclick="Article_Upload()">업로드</button>
-            </div>
-        </div>
-    </div>
-
     <nav class="nav">
         <ul>
             <a href="/index.html">
@@ -47,6 +32,26 @@
             <a onclick="logout()">&nbsp;Logout</a>
         </div>
     </nav>
+
+    <div id="upload_modal" class="upload_modal">
+        <div class="upload_modal_content">
+            <div class="upload_modal_header">
+                <span onclick="up_modal_close(this)" class="close">&times;</span>
+                <h2>업로드</h2>
+            </div>
+            <div class="upload_modal_body">
+                <input type="text" class="upload_title" id="upload_title" placeholder="제목">
+                <textarea class="upload_content" id="upload_content" placeholder="내용"></textarea>
+                <div class="upload_photo">
+                    <button id="photo_upload" onclick="photo_upload()" class="photo_upload_button">사진 올리기</button>
+                    <img id="photo_preview" src="https://www.ui4u.go.kr/depart/img/content/sub03/img_con03030100_01.jpg" alt="" class="photo_upload_img">
+                </div>
+                <input type="file" name="file" class="upload_file" id="upload_file" accept="image/*" hidden>
+                <button class="upload_button" onclick="Article_Upload()">등록</button>
+            </div>
+        </div>
+    </div>
+
     <div id="articles" class="articles">
 
     </div>

@@ -1,4 +1,5 @@
-const BackEndUrl = "http://127.0.0.1:8000";
+// const BackEndUrl = "http://127.0.0.1:8000";
+const BackEndUrl = "https://www.dk-backend.shop";
 const TOKEN = "Bearer " + localStorage.getItem("token_access");
 const login_form = document.getElementById("login_form");
 
